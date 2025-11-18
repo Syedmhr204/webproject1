@@ -1,0 +1,250 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Complete Fitness Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>FitLife</span>
+            </div>
+           <div class="nav-menu" id="nav-menu">
+                <a href="Adminindex.html" class="nav-link" data-section="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="trainer.jsp" class="nav-link" data-section="trainers">
+                    <i class="fas fa-users"></i> Trainers
+                </a>
+                <a href="foodChart.jsp" class="nav-link" data-section="food-chart">
+                    <i class="fas fa-apple-alt"></i> Food Chart
+                </a>
+                <a href="Exercise.html" class="nav-link" data-section="exercise">
+                    <i class="fas fa-dumbbell"></i> Exercise
+                </a>
+                <a href="profile.jsp" class="nav-link active" data-section="profile" id="profile-link-nav">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+   
+    <main id="main-content">
+   
+           
+
+            <div class="calculators-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Fitness Calculators</h2>
+                        <p>Track your fitness journey with our precise calculators for BMI, daily calories, and protein needs</p>
+                    </div>
+                    <div class="calculators-grid">
+                     
+                        <div class="calculator-card">
+                            <div class="calculator-header">
+                                <div class="calculator-icon bmi-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3>BMI Calculator</h3>
+                            </div>
+                            <div class="calculator-form">
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="bmi-height" placeholder="Enter height in cm">
+                                </div>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="bmi-weight" placeholder="Enter weight in kg">
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="bmi-result" style="display: none;">
+                                <div class="result-value" id="bmi-value"></div>
+                                <div class="result-category" id="bmi-category"></div>
+                            </div>
+                        </div>
+
+                       
+                        <div class="calculator-card">
+                            <div class="calculator-header">
+                                <div class="calculator-icon calorie-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <h3>Calorie Calculator</h3>
+                            </div>
+                            <div class="calculator-form">
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label>Age</label>
+                                        <input type="number" id="calorie-age" placeholder="Age">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Gender</label>
+                                        <select id="calorie-gender">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label>Height (cm)</label>
+                                        <input type="number" id="calorie-height" placeholder="Height">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Weight (kg)</label>
+                                        <input type="number" id="calorie-weight" placeholder="Weight">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Activity Level</label>
+                                    <select id="calorie-activity">
+                                        <option value="1.2">Sedentary (little/no exercise)</option>
+                                        <option value="1.375">Light activity (light exercise 1-3 days/week)</option>
+                                        <option value="1.55">Moderate activity (moderate exercise 3-5 days/week)</option>
+                                        <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                                        <option value="1.9">Extremely active (very hard exercise, physical job)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="calorie-result" style="display: none;">
+                                <div class="result-value" id="calorie-value"></div>
+                                <div class="result-category">Calories per day</div>
+                            </div>
+                        </div>
+
+                      
+                        <div class="calculator-card">
+                            <div class="calculator-header">
+                                <div class="calculator-icon protein-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h3>Protein Calculator</h3>
+                            </div>
+                            <div class="calculator-form">
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="protein-weight" placeholder="Enter weight in kg">
+                                </div>
+                                <div class="input-group">
+                                    <label>Fitness Goal</label>
+                                    <select id="protein-goal">
+                                        <option value="maintenance">General Health (1.2g/kg)</option>
+                                        <option value="weight-loss">Weight Loss (1.6g/kg)</option>
+                                        <option value="muscle-gain">Muscle Gain (2.2g/kg)</option>
+                                        <option value="athlete">Athletic Performance (2.0g/kg)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="protein-result" style="display: none;">
+                                <div class="result-value" id="protein-value"></div>
+                                <div class="result-category">Protein per day</div>
+                                <div class="result-note" id="protein-note"></div>
+                            </div>
+                        </div>
+
+                       
+<div class="calculator-card">
+    <div class="calculator-header">
+        <div class="calculator-icon bmr-icon ">
+            <i class="fas fa-fire"></i>
+        </div>
+        <h3>BMR Calculator</h3>
+    </div>
+    <div class="calculator-form">
+        <div class="input-group">
+            <label>Gender</label>
+            <select id="bmr-gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="bmr-weight" placeholder="Enter weight">
+        </div>
+        <div class="input-group">
+            <label>Height (cm)</label>
+            <input type="number" id="bmr-height" placeholder="Enter height">
+        </div>
+        <div class="input-group">
+            <label>Age (years)</label>
+            <input type="number" id="bmr-age" placeholder="Enter age">
+        </div>
+    </div>
+    <div class="calculator-result" id="bmr-result" style="display: none;">
+        <div class="result-value" id="bmr-value"></div>
+        <div class="result-category">Calories/day</div>
+        <div class="result-note" id="bmr-note"></div>
+    </div>
+</div>
+
+
+
+<div class="calculator-card">
+  <div class="calculator-header">
+      <div class="calculator-icon fat-icon ">
+      <i class="fas fa-fire"></i>
+    </div>
+    <h2>Body Fat Calculator</h2>
+  </div>
+
+  <form id="bodyFatForm" onsubmit="return false;" class="calculator-form">
+    <div class="input-group">
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="height">Height (cm)</label>
+      <input type="number" id="height" min="50" max="300" required />
+    </div>
+
+    <div class="input-group">
+      <label for="neck">Neck circumference (cm)</label>
+      <input type="number" id="neck" min="10" max="100" required />
+    </div>
+
+    <div class="input-group">
+      <label for="waist">Waist circumference (cm)</label>
+      <input type="number" id="waist" min="20" max="200" required />
+    </div>
+
+    <div class="input-group" id="hipGroup" style="display:none;">
+      <label for="hip">Hip circumference (cm) <small>(for females)</small></label>
+      <input type="number" id="hip" min="20" max="200" />
+    </div>
+  </form>
+
+  <div class="calculator-result" id="result" style="display: none;">
+    <div class="result-value" id="bodyFatValue"></div>
+    <div class="result-category">Body Fat Percentage</div>
+  </div>
+</div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    <script src="script.js"></script>
+     </main>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Complete Fitness Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>FitLife</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="trainer.html" class="nav-link" data-section="trainers">
+                    <i class="fas fa-users"></i> Trainers
+                </a>
+                <a href="foodchart.jsp" class="nav-link" data-section="food-chart">
+                    <i class="fas fa-apple-alt"></i> Food Chart
+                </a>
+               
+                <a href="exercises.jsp" class="nav-link" data-section="exercise">
+                    <i class="fas fa-dumbbell"></i> Exercise
+                </a>
+
+                <a href="login.jsp" class="nav-link" data-section="login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+  
+    <main id="main-content">
+       
+        <section id="home" class="section active">
+           
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Transform Your
+                        <span class="gradient-text">Fitness Journey</span>
+                    </h1>
+                    <p class="hero-description">
+                        Calculate your BMI, daily calories, and protein needs. Get personalized fitness guidance 
+                        and achieve your health goals with our comprehensive fitness platform.
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature-card">
+  <i class="fas fa-bullseye"></i>
+  <h3>
+    <a href="calculator.html" style="text-decoration: none; color: white;">
+      Precise Calculations
+    </a>
+  </h3>
+  <p>Get accurate BMI, calorie, and protein calculations tailored to your goals</p>
+</div>
+                        <div class="feature-card">
+                            <i class="fas fa-heart"></i>
+                            <h3>Expert Guidance</h3>
+                            <p>Professional trainers and nutritionists to guide your fitness journey</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Track Progress</h3>
+                            <p>Monitor your fitness progress with comprehensive tracking tools</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="calculators-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Fitness Calculators</h2>
+                        <p>Track your fitness journey with our precise calculators for BMI, daily calories, and protein needs</p>
+                    </div>
+                    <div class="calculators-grid">
+                       
+                        <div class="calculator-card">
+                            <div class="calculator-header">
+                                <div class="calculator-icon bmi-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3>BMI Calculator</h3>
+                            </div>
+                            <div class="calculator-form">
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="bmi-height" placeholder="Enter height in cm">
+                                </div>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="bmi-weight" placeholder="Enter weight in kg">
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="bmi-result" style="display: none;">
+                                <div class="result-value" id="bmi-value"></div>
+                                <div class="result-category" id="bmi-category"></div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-card">
+                            <div class="calculator-header">
+                                <div class="calculator-icon calorie-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <h3>Calorie Calculator</h3>
+                            </div>
+                            <div class="calculator-form">
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label>Age</label>
+                                        <input type="number" id="calorie-age" placeholder="Age">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Gender</label>
+                                        <select id="calorie-gender">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label>Height (cm)</label>
+                                        <input type="number" id="calorie-height" placeholder="Height">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Weight (kg)</label>
+                                        <input type="number" id="calorie-weight" placeholder="Weight">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Activity Level</label>
+                                    <select id="calorie-activity">
+                                        <option value="1.2">Sedentary (little/no exercise)</option>
+                                        <option value="1.375">Light activity (light exercise 1-3 days/week)</option>
+                                        <option value="1.55">Moderate activity (moderate exercise 3-5 days/week)</option>
+                                        <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                                        <option value="1.9">Extremely active (very hard exercise, physical job)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="calorie-result" style="display: none;">
+                                <div class="result-value" id="calorie-value"></div>
+                                <div class="result-category">Calories per day</div>
+                            </div>
+                        </div>
+
+                      
+                        <div class="calculator-card">
+                            <div class="calculator-header">
+                                <div class="calculator-icon protein-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h3>Protein Calculator</h3>
+                            </div>
+                            <div class="calculator-form">
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="protein-weight" placeholder="Enter weight in kg">
+                                </div>
+                                <div class="input-group">
+                                    <label>Fitness Goal</label>
+                                    <select id="protein-goal">
+                                        <option value="maintenance">General Health (1.2g/kg)</option>
+                                        <option value="weight-loss">Weight Loss (1.6g/kg)</option>
+                                        <option value="muscle-gain">Muscle Gain (2.2g/kg)</option>
+                                        <option value="athlete">Athletic Performance (2.0g/kg)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="protein-result" style="display: none;">
+                                <div class="result-value" id="protein-value"></div>
+                                <div class="result-category">Protein per day</div>
+                                <div class="result-note" id="protein-note"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
+
+        <section id="trainers" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Meet Our Expert Trainers</h1>
+                    <p>Work with certified fitness professionals who are passionate about helping you achieve your goals</p>
+                </div>
+                <div class="trainers-grid" id="trainers-grid">
+                 
+                </div>
+            </div>
+        </section>
+
+   
+       
+
+   
+        <section id="exercise" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Exercise Library</h1>
+                    <p>Comprehensive exercise database with detailed instructions and targeted muscle groups</p>
+                </div>
+                <div class="exercise-filters">
+                    <div class="filter-group">
+                        <i class="fas fa-filter"></i>
+                        <span>Category:</span>
+                        <div class="filter-buttons" id="exercise-categories">
+                            
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Difficulty:</span>
+                        <div class="filter-buttons" id="exercise-difficulties">
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="exercises-grid" id="exercises-grid">
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chatbot" id="chatbot" style="display: none;">
+        <div class="chatbot-header">
+            <div class="chatbot-info">
+                <i class="fas fa-robot"></i>
+                <div>
+                    <h3>Fitness Assistant</h3>
+                    <p>Online</p>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    Hi! I'm your fitness assistant. I can help you with workout routines, nutrition advice, and fitness tips. What would you like to know?
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Ask me about fitness, nutrition, workouts...">
+            <button id="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div> -->
+ 
+    <script src="script.js"></script>
+     
+</body>
+</html>

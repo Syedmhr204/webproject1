@@ -1,0 +1,117 @@
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%
+    String email = (String) session.getAttribute("email");
+    if (email == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Complete Fitness Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>FitLife</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-section="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="trainer.html" class="nav-link  active" data-section="trainers" id="profile-link-nav">
+                    <i class="fas fa-users"></i> Trainers
+                </a>
+                <a href="Food Chart.html" class="nav-link" data-section="food-chart">
+                    <i class="fas fa-apple-alt"></i> Food Chart
+                </a>
+                <a href="Exercise.html" class="nav-link" data-section="exercise">
+                    <i class="fas fa-dumbbell"></i> Exercise
+                </a>
+               <a href="login.jsp" class="nav-link" data-section="login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+           
+
+                
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        
+
+      
+        <section id="trainers" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Meet Our Expert Trainers</h1>
+                   <p >
+     Login now to unlock your path to fitness!  
+    Secure your trainer, book your slot instantly,  
+    and get guided by certified experts who will push you closer  
+    to your goals every single day.    </p>
+    <h3>Don’t wait — your transformation starts with a single click!</h3>
+
+                
+    
+  <a href="login.jsp" 
+     style="display:inline-block;
+     justify-content:center;
+            padding:12px 24px;
+            border-radius:8px;
+            text-decoration:none;
+            color:#ffffff;
+            font-weight:600;
+            text-align:center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow:0 0 12px rgba(79, 78, 78, 0.6);
+            transition:all 0.3s ease;">
+     🔒 Must Login for Booking
+  </a>
+</div>
+
+<!-- 
+
+
+                <div class="trainers-grid" id="trainers-grid">
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+  
+ <div class="booking-modal" id="booking-modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Book a Session</h2>
+        <form id="booking-form" action="savebooking.jsp" method="post">
+            <div class="form-group">
+                <label for="trainer-name">Trainer:</label>
+                <input type="text" id="trainer-name" name="trainer-name" readonly>
+<h2>    YOU HAVE TO LOGIN FAST </h2>
+            </div>
+            
+        </form>
+    </div>
+</div>
+</div>
+    <script src="trainer.js"></script> -->
+    
+</body>
+</html>

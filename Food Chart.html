@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitLife - Complete Fitness Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+ 
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-heartbeat"></i>
+        <span>FitLife</span>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="Adminindex.html" class="nav-link" data-section="home">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="trainer.jsp" class="nav-link" data-section="trainers">
+          <i class="fas fa-users"></i> Trainers
+        </a>
+        <a href="foodChart.jsp" class="nav-link active" data-section="food-chart">
+          <i class="fas fa-apple-alt"></i> Food Chart
+        </a>
+        <a href="exercises.jsp" class="nav-link" data-section="exercise">
+          <i class="fas fa-dumbbell"></i> Exercise
+        </a>
+        <a href="profiles.jsp" class="nav-link" data-section="profile">
+          <i class="fas fa-user-circle"></i> Profile
+        </a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+   
+    <section id="food-chart" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h1>Nutrition Food Chart</h1>
+          <p>Comprehensive nutritional information for healthy meal planning and tracking</p>
+        </div>
+        <div class="food-controls">
+          
+          <div class="category-filters" id="food-categories"></div>
+        </div>
+        <div class="food-grid" id="food-grid"></div>
+
+        <div class="diet-ai-section" style="margin-top:40px;">
+          <h2>AI Diet Feedback</h2>
+          <button id="ai-diet-btn" class="primary-btn" style="margin-bottom:20px;">Get AI Diet Feedback</button>
+          <div id="ai-feedback"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="trainer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const aiBtn = document.getElementById('ai-diet-btn');
+      if (aiBtn) {
+        aiBtn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          aiBtn.disabled = true;
+          aiBtn.innerText = 'Loading...';
+          document.getElementById('ai-feedback').innerHTML = '<em>Getting AI feedback...</em>';
+
+          // Fetch user stats from server
+          let stats;
+          try {
+            const res = await fetch('userstats.jsp');
+            stats = await res.json();
+          } catch (err) {
+            document.getElementById('ai-feedback').innerText = 'Could not fetch user stats.';
+            resetButton();
+            return;
+          }
+
+          if (stats.error) {
+            document.getElementById('ai-feedback').innerText = 'Please log in and complete your profile to get AI feedback.';
+            resetButton();
+            return;
+          }
+
+          
+          let feet = '--', inches = '--';
+          let heightCm = parseFloat(stats.height);
+          if (!isNaN(heightCm)) {
+            let totalInches = heightCm / 2.54;
+            feet = Math.floor(totalInches / 12);
+            inches = Math.round(totalInches % 12);
+          }
+
+          const summary = `User stats:\n- BMI: ${stats.bmi}\n- Daily Protein: ${stats.protein}g\nUser is a ${stats.age}-year-old ${stats.gender}, ${feet}ft ${inches}in tall and weighs ${stats.weight}kg.\nProvide specific tips on improving diet, food choices, and protein intake based on these results.`;
+
+         
+          await getAIFeedback(summary);
+          resetButton();
+        });
+      }
+
+      function resetButton() {
+        aiBtn.disabled = false;
+        aiBtn.innerText = 'Get AI Diet Feedback';
+      }
+
+      async function getAIFeedback(summary) {
+        try {
+          const response = await fetch('aiDietFeedback.jsp', { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: summary })
+          });
+          const data = await response.json();
+          const reply = data.reply || "Couldn't get AI feedback.";
+          document.getElementById('ai-feedback').innerHTML = `
+            <h3>AI Feedback:</h3>
+            <div class="ai-text">${formatAIText(reply)}</div>
+          `;
+        } catch (error) {
+          console.error(error);
+          document.getElementById('ai-feedback').innerText = "Error fetching AI feedback.";
+        }
+      }
+
+      function formatAIText(text) {
+        const lines = text.split('\n').filter(line => line.trim() !== '');
+        let formatted = lines.map(line => {
+          if (line.startsWith('-') || line.startsWith('•')) {
+            return `<li>${escapeHtml(line.slice(1).trim())}</li>`;
+          } else if (/^\d+[\).]/.test(line)) {
+            return `<li>${escapeHtml(line)}</li>`;
+          } else {
+            return `<p>${escapeHtml(line)}</p>`;
+          }
+        }).join('');
+        if (formatted.includes('<li>')) {
+          formatted = `<ul>${formatted}</ul>`;
+        }
+        return formatted;
+      }
+
+      // Prevent XSS
+      function escapeHtml(str) {
+        return str.replace(/[&<>"']/g, function(m) {
+          return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+        });
+      }
+      
+    });
+  </script>
+</body>
+</html>
